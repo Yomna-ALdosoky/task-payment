@@ -72,10 +72,19 @@ class PayPalPaymentController extends Controller
     }
 
     public function show(Request $request){
-        $word = $request->input('search') ?? null;
-        $transactions = Transaction::when($word != null , function ($q) use ($word){
-            $q->where('payment_id' , 'like' , '%' . $word . '%');
-        })->get();
+        // $word = $request->input('search') ?? null;
+        // $transactions = Transaction::when($word != null , function ($q) use ($word){
+        //     $q->where('payment_id' , 'like' , '%' . $word . '%');
+        // })->get();
+
+        $word = $request->input('search');
+
+        $transactions = Transaction::query();
+
+        if ($word) {
+            $transactions->where('payment_id', 'like', '%' . $word . '%');
+        }
+        $transactions = $transactions->get();
 
         return view('all-transaction', compact('transactions'));
     }

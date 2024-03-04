@@ -46,11 +46,8 @@
             @endforeach
       </table>
       @if($transactions->count() == 0)
-                
-      <sban class="d-flex justify-content-center">Data Not Found</sban>
-    
-      
-  @endif
+         <sban class="d-flex justify-content-center">Data Not Found</sban>
+      @endif
     </div>
 </body>
 </html>
